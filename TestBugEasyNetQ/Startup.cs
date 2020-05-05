@@ -26,10 +26,8 @@ namespace TestBugEasyNetQ
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<MyDbContext>(o => o.UseSqlite("Data Source=:memory:;"));
-
-            services.AddSingleton<IBus>(RabbitHutch.CreateBus("host=myServer;virtualHost=myVirtualHost;username=mike;password=topsecret"));
+            services.AddSingleton<MySubscriber>(new MySubscriber(RabbitHutch.CreateBus("host=xxx;username=xxx;password=xxx")));
 
         }
 
