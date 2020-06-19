@@ -1,6 +1,5 @@
 ﻿using EasyNetQ;
 using EasyNetQ.AutoSubscribe;
-using EasyNetQ.NonGeneric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +9,9 @@ namespace TestBugEasyNetQ
 {
     public class MySubscriber : AutoSubscriber
     {
-        public MySubscriber(IBus bus) : base(bus, "asdf")
+        public MySubscriber(IBus bus) : base(bus, "qsdf")
         {
-            bus.Subscribe(typeof(string), "asdf", (o) => { });
+            bus.PubSub.Subscribe<string>("asdf", (o) => { });
         }
     }
 }
